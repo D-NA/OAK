@@ -1,0 +1,48 @@
+global main
+extern printf,scanf,fflush
+    
+section .data
+    scan db '%d',0
+    print db '%d',10,0
+    kempes dd "kempes", 0
+    pas dd "pas", 0
+    keras dd "keras", 0
+        
+section .bss
+    psi resd 1
+                 
+section .text
+	main :
+	;scan
+    push psi
+    push scan
+    call scanf
+    
+    mov eax, [psi]	;eax=p*l*t
+    cmp eax, 29
+    jb .kempes
+    cmp eax, 35
+    jbe .pas
+    jmp .keras
+    
+.kempes
+    push kempes 
+    jmp .print
+    
+.pas
+    push pas 
+    jmp .print
+
+.keras
+    push keras 
+    
+.print
+	call printf
+         
+;exit 
+    push 0
+    call fflush
+      
+    mov eax, 1
+    mov ebx,0
+    int 0x80
