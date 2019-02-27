@@ -21,6 +21,7 @@ section .text
 	.fact
 		cmp ecx, [n]
 		ja .fact_end
+		mul ecx
 		inc ecx
 		jmp .fact
 	
