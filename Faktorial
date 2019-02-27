@@ -1,0 +1,36 @@
+global main
+extern printf,scanf,fflush
+    
+section .data
+    scan db '%d',0
+    print db '%d',10,0
+        
+section .bss
+    n resd 1
+    
+section .text
+	main
+		push n
+		push scan
+		call scanf		;scanf("%d", &n)
+		add esp, 8
+	
+		mov eax, 1		;f=1
+		mov ecx, 1
+
+	.fact
+		cmp ecx, [n]
+		ja .fact_end
+		inc ecx
+		jmp .fact
+	
+	.fact_end
+		push eax
+		push print
+		call printf		;print eax
+		push 0
+		call fflush		;fflush(NULL)
+		add esp, 12
+	
+		mov eax, 0		;return 0
+		ret
