@@ -1,7 +1,7 @@
 global main
 
 section .data
-    filename    db      "new folder", 0
+    filename    db      "new", 0
     ;hello		db		"Hello, Dhanu!", 10, 0
     ;update		db		"Ilkom IPB", 10 ,0
     ;rename		db		"dhanu.txt", 0
@@ -15,7 +15,7 @@ section .text
                 ; err = mkdir(path, mode)
                 mov		eax, 39
                 mov 	ebx, filename
-                mov		ecx, 6440
+                mov		ecx, 744o
                 int     0x80  
                 mov		[fd], eax
 
@@ -28,6 +28,7 @@ section .text
                 mov     eax, 1
                 mov     ebx, 0
                 int     0x80
+
 
 
 
